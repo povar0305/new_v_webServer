@@ -17,8 +17,9 @@
     margin-bottom: 0;
     margin-top: 0;
   }
-  & span{
+  & span {
     font-size: small;
+    margin-top: -15px;
   }
 }
 </style>

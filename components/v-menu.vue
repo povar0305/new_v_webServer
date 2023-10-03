@@ -2,10 +2,12 @@
   <header>
     <nav>
       <ul>
-        <li><NuxtLink to="/" :class="{active:route.name==''}">Главная</NuxtLink></li>
-        <li><NuxtLink to="/viewing" :class="{active:route.name=='viewing'}">Просмотр</NuxtLink></li>
-        <li><NuxtLink to="/archive" :class="{active:route.name=='archive'}">Архив</NuxtLink></li>
-        <li><NuxtLink to="/settings" :class="{active:route.name=='settings'}">Настройки</NuxtLink></li>
+        <li v-for="item in props.routerName">
+          <NuxtLink :to="'/' + item.linkTo"
+            >{{ item.text }}
+            <v-tooltip v-if="item.desc" activator="parent" location="top">{{ item.desc }}</v-tooltip>
+          </NuxtLink>
+        </li>
         <li><vLogo></vLogo></li>
       </ul>
     </nav>
@@ -14,8 +16,16 @@
 
 <script lang="ts" setup>
 import vLogo from "./v-logo.vue";
-const route = useRoute()
+const route = useRoute();
 
+interface Props {
+  routerName: {
+    linkTo: string;
+    text: string;
+    desc: string;
+  }[];
+}
+const props = defineProps<Props>();
 </script>
 
 <style lang="scss" scoped>
@@ -32,7 +42,7 @@ ul {
       &:hover {
         color: white;
       }
-      &.active{
+      &.router-link-active {
         border-bottom: 1px solid white;
         color: white;
       }

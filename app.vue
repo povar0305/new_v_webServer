@@ -1,25 +1,27 @@
 <template>
-  <div id="app">
-  <VMenu></VMenu>
+    <VMenu v-model:routerName="routerName"></VMenu>
     <NuxtPage />
-  </div>
 </template>
 
-<script lang="ts">
-import { NuxtLayout, VMenu } from '#build/components';
-
+<script lang="ts" setup>
+import VMenu from "./components/v-menu.vue";
+const routerName = [
+  { linkTo: "", text: "Главная", desc: "Главная страница" },
+  { linkTo: "viewing", text: "Просмотр", desc: "Просмотр в реальном времени" },
+  { linkTo: "archive", text: "Архив", desc: "Архивные записи" },
+  { linkTo: "settings", text: "Настройки", desc: "Настройки приложения" },
+];
 
 </script>
 
 <style lang="scss">
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;700&display=swap");
 
 body {
   margin: 0;
-  padding: 0;
+  padding: 15px;
   top: 0;
   background-color: #15181a;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 </style>
