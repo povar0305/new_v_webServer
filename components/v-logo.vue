@@ -12,14 +12,14 @@
   flex-direction: column;
   width: 100%;
   white-space: nowrap;
-  & p {
-    font-size: 1.75rem;
-    margin-bottom: 0;
-    margin-top: 0;
-  }
-  & span {
-    font-size: small;
-    margin-top: -15px;
-  }
+}
+p {
+  font-size: 1.75rem;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+span {
+  font-size: small;
+  margin-top: -15px;
 }
 </style>
