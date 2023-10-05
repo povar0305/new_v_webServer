@@ -3,9 +3,9 @@ import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  css: ['vuetify/lib/styles/main.sass'],
+  css: ['vuetify/lib/styles/main.sass','@mdi/font/css/materialdesignicons.css'],
   build: {
-    transpile: ['vuetify']
+    transpile: ['vuetify','@vuepic/vue-datepicker']
   },
   modules: [
     (_options, nuxt) => {

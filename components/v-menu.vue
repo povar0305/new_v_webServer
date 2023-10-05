@@ -35,7 +35,7 @@ ul {
   justify-content: flex-end;
   align-items: center;
   & li {
-    margin-right: 10px;
+    margin-right: 15px;
     & a {
       color: rgba(255, 255, 255, 0.5);
       text-decoration: none;
