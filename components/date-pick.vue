@@ -42,3 +42,18 @@ function selected(e) {
   emit("update:date", e);
 }
 </script>
+<style scoped lang="scss">
+.datepicked {
+  width: 100%;
+}
+
+.dp__theme_light {
+  --dp-background-color: transparent !important;
+  --dp-text-color: hsla(0, 0%, 100%, 0.5);
+  &:hover {
+    --dp-text-color: hsla(0, 0%, 100%, 1);
+    --dp-background-color: hsla(0, 0%, 100%, 0.2) !important;
+    --dp-icon-color: white;
+  }
+}
+</style>
