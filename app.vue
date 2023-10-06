@@ -1,6 +1,7 @@
 <template>
-    <VMenu v-model:routerName="routerName"></VMenu>
-    <NuxtPage />
+  <VMenu v-model:routerName="routerName"></VMenu>
+
+  <NuxtPage />
 </template>
 
 <script lang="ts" setup>
@@ -11,10 +12,9 @@ const routerName = [
   { linkTo: "archive", text: "Архив", desc: "Архивные записи" },
   { linkTo: "settings", text: "Настройки", desc: "Настройки приложения" },
 ];
-
 </script>
 
-<style >
+<style>
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;700&display=swap");
 
 body {
@@ -23,5 +23,6 @@ body {
   top: 0;
   background-color: #15181a;
   font-family: "Roboto", sans-serif;
+  transition: 0.2ms;
 }
 </style>
