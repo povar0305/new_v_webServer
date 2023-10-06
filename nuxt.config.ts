@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ['vuetify/lib/styles/main.sass','@mdi/font/css/materialdesignicons.css'],
   build: {
-    transpile: ['vuetify','@vuepic/vue-datepicker']
+    transpile: ['vuetify','@vuepic/vue-datepicker','vue-toastification']
   },
   modules: [
     (_options, nuxt) => {

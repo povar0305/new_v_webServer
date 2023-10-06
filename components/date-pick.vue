@@ -1,15 +1,17 @@
 <template>
-  <VueDatePicker
-    :model-value="props.date"
-    locale="ru"
-    auto-apply
-    hide-offset-dates
-    :enable-time-picker="false"
-    text-input
-    :highlight="highlightedDates"
-    @update:model-value="selected"
-    :format="format"
-  ></VueDatePicker>
+  <div class="datepicked">
+    <VueDatePicker
+      :model-value="props.date"
+      locale="ru"
+      auto-apply
+      hide-offset-dates
+      :enable-time-picker="false"
+      text-input
+      :highlight="highlightedDates"
+      @update:model-value="selected"
+      :format="format"
+    ></VueDatePicker>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -44,7 +46,8 @@ function selected(e) {
 </script>
 <style scoped lang="scss">
 .datepicked {
-  width: 100%;
+  width: auto;
+  margin-right: 10px;
 }
 
 .dp__theme_light {
