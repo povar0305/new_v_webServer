@@ -76,3 +76,5 @@ Check out the [deployment documentation](https://nuxt.com/docs/getting-started/d
 
 
 [Библиотека уведомление](https://github.com/Maronato/vue-toastification#plugin-registration) 
+
+[tooltips](https://floating-vue.starpad.dev/guide/)

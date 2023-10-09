@@ -2,10 +2,9 @@
   <header>
     <nav>
       <ul>
-        <li v-for="item in props.routerName">
-          <NuxtLink :to="'/' + item.linkTo"
+        <li v-for="item in props.routerName" :key="item.text">
+          <NuxtLink v-tooltip="item.desc" :to="'/' + item.linkTo"
             >{{ item.text }}
-            <v-tooltip v-if="item.desc" activator="parent" location="top">{{ item.desc }}</v-tooltip>
           </NuxtLink>
         </li>
         <li><vLogo></vLogo></li>
@@ -16,6 +15,7 @@
 
 <script lang="ts" setup>
 import vLogo from "./v-logo.vue";
+
 const route = useRoute();
 
 interface Props {

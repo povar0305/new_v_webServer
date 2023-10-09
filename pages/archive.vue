@@ -25,7 +25,7 @@ import { useToast } from "vue-toastification";
 
 const date = ref(new Date());
 let searchText = ref(" ");
-
+let needUpdate;
 function searchTrain(text) {
   useToast().clear();
   if (Number(text)) {
