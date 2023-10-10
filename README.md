@@ -78,3 +78,14 @@ Check out the [deployment documentation](https://nuxt.com/docs/getting-started/d
 [Библиотека уведомление](https://github.com/Maronato/vue-toastification#plugin-registration) 
 
 [tooltips](https://floating-vue.starpad.dev/guide/)
+
+
+## Цвета.
+Для использования как цвет текста добавить `text-`, для использования как фоновый цвет `bd-`
+ Использовую из (vuetify)[https://vuetifyjs.com/en/styles/colors/#material-colors]
+
+Зеленый - green-lighten-1
+Синий - blue-darken-1
+Серый - blue-grey-lighten-1
+
+Цвет иконок - blue-grey-lighten-4
