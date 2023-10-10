@@ -14,19 +14,58 @@
   </div>
   <div class="wrapper_form">
     <DatePick v-model:date="date"></DatePick>
-    <vSearch v-model="searchText" @searchTrain="searchTrain(searchText)"></vSearch>l;
+    <vSearch v-model="searchText" @searchTrain="searchTrain(searchText)"></vSearch>
   </div>
+  <vTrains :trains="trainsList" v-model="selectedTrain"></vTrains>{{ selectedTrain }}
 </template>
 <script setup>
 import { ref } from "vue";
-import DatePick from "../components/date-pick.vue";
+import DatePick from "~/components/date-pick.vue";
 import vSearch from "~/components/v-search.vue";
+import vTrains from "~/components/v-trains.vue";
 import { useToast } from "vue-toastification";
 
 const date = ref(new Date()); //дата из календаря
 let searchText = ref(" "); //переменная, для текста из поисковой строки
 let needUpdate = ref(false); //нужно ли обовить страницу
-
+let selectedTrain = ref({}); //выбранный состав
+let trainsList = ref([
+  {
+    id: 1666709900667,
+    count: 19,
+    time: "14:58:20",
+    date: "25.10.2022",
+    prefix: "2022-10-25_14-58-20",
+    ASKMneed: 1,
+    number: "****",
+    index: "**********",
+    weight: 90,
+    speed: 168,
+    direction: "Неизвестно",
+    gateactive: true,
+    hvisoractive: false,
+    icoactive: true,
+    hasAlarm: true,
+  },
+  {
+    id: 1666709900888,
+    count: 19,
+    time: "14:58:20",
+    date: "25.10.2022",
+    prefix: "2022-10-25_14-58-20",
+    ASKMsent: 0,
+    ASKMneed: 1,
+    number: "****",
+    index: "**********",
+    weight: 0,
+    speed: 168,
+    direction: "Неизвестно",
+    gateactive: true,
+    hvisoractive: false,
+    icoactive: true,
+    hasAlarm: false,
+  },
+]);
 function searchTrain(text) {
   useToast().clear();
   if (Number(text)) {
