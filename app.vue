@@ -1,11 +1,13 @@
 <template>
-  <VMenu v-model:routerName="routerName"></VMenu>
+  <v-menu v-model:routerName="routerName"></v-menu>
 
   <NuxtPage />
 </template>
 
 <script lang="ts" setup>
 import VMenu from "./components/v-menu.vue";
+import "@fortawesome/fontawesome-free/css/all.css";
+
 const routerName = [
   { linkTo: "", text: "Главная", desc: "Главная страница" },
   { linkTo: "viewing", text: "Просмотр", desc: "Просмотр в реальном времени" },

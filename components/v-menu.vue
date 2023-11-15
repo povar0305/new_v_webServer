@@ -3,18 +3,20 @@
     <nav>
       <ul>
         <li v-for="item in props.routerName" :key="item.text">
-          <NuxtLink v-tooltip="item.desc" :to="'/' + item.linkTo"
+          <nuxt-link v-tooltip="item.desc" :to="'/' + item.linkTo"
             >{{ item.text }}
-          </NuxtLink>
+          </nuxt-link>
         </li>
-        <li><vLogo></vLogo></li>
+        <li>
+          <v-logo />
+        </li>
       </ul>
     </nav>
   </header>
 </template>
 
 <script lang="ts" setup>
-import vLogo from "./v-logo.vue";
+import VLogo from "./v-logo.vue";
 
 const route = useRoute();
 
@@ -34,14 +36,18 @@ ul {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+
   & li {
     margin-right: 15px;
+
     & a {
       color: rgba(255, 255, 255, 0.5);
       text-decoration: none;
+
       &:hover {
         color: white;
       }
+
       &.router-link-active {
         border-bottom: 1px solid white;
         color: white;

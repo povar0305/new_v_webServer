@@ -41,18 +41,23 @@
       </p>
     </div>
     <div class="trains_list">
-      <vTrain
+      <v-train
         v-for="train in props.trains"
         :key="train.id"
         :train="train"
+        :selected="modelValue"
         :soursesTrains="soursesTrains"
         @click="selectedTrain(train)"
-      ></vTrain>
+        @download="$emit('downloadTrain', $event)"
+        @web="$emit('webTrain', $event)"
+      >
+      </v-train>
     </div>
+    {{ modelValue }}
   </div>
 </template>
 <script setup lang="ts">
-import vTrain from "./v-train.vue";
+import VTrain from "./v-train.vue";
 
 interface Props {
   trains: {
@@ -64,7 +69,7 @@ interface Props {
     ASKMsent?: string;
     ASKMneed: number;
     number: string;
-    index: string;
+    index: number;
     weight: number;
     speed: number;
     direction: string;
@@ -76,7 +81,7 @@ interface Props {
   modelValue: {};
 }
 const props = defineProps<Props>();
-const emit = defineEmits(["update:modelValue"]);
+const emit = defineEmits(["update:modelValue", "downloadTrain", "webTrain"]);
 
 let soursesTrains = ref({
   weight: false,
@@ -85,60 +90,32 @@ let soursesTrains = ref({
 function selectedTrain(train) {
   emit("update:modelValue", train);
 }
-
 function checkSourses() {
   soursesTrains.weight = props.trains.some((train) => train.weight > 0);
 }
 checkSourses();
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .trains {
   display: flex;
   padding-top: 20px;
   flex-direction: column;
+
   &_list {
     display: flex;
     flex-direction: column;
   }
+
   &_title {
     display: flex;
     margin-right: 150px;
     justify-content: space-between;
     margin-left: 10px;
+    margin-bottom: 1rem;
+
     & p {
       width: 100px;
     }
-  }
-}
-
-.train {
-  margin-bottom: 10px;
-  padding: 5px 10px;
-  align-items: center;
-  flex-direction: row;
-  position: relative;
-  display: flex;
-  height: 40px;
-  justify-content: space-between;
-  &:hover {
-    box-shadow: 0px 0px 20px -5px rgba(255, 255, 255, 0.31);
-    cursor: pointer;
-  }
-}
-.train .status_error {
-  width: 3px;
-  height: 40px;
-  left: -3px;
-  position: absolute;
-  top: 0;
-}
-
-.train__inner {
-  width: calc(100% - 140px);
-  display: flex;
-  justify-content: space-between;
-  & > * {
-    width: 100px;
   }
 }
 </style>

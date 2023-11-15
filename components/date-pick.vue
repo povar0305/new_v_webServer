@@ -1,16 +1,7 @@
 <template>
   <div class="datepicked">
-    <VueDatePicker
-      :model-value="props.date"
-      locale="ru"
-      auto-apply
-      hide-offset-dates
-      :enable-time-picker="false"
-      text-input
-      :highlight="highlightedDates"
-      @update:model-value="selected"
-      :format="format"
-    ></VueDatePicker>
+    <VueDatePicker :model-value="props.date" locale="ru" auto-apply hide-offset-dates :enable-time-picker="false"
+      text-input :highlight="highlightedDates" @update:model-value="selected" :format="format"></VueDatePicker>
   </div>
 </template>
 
@@ -18,14 +9,17 @@
 import VueDatePicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
 import addDays from "date-fns/addDays";
-const emit = defineEmits(["update:date"]);
 import { ref } from "vue";
+
+const emit = defineEmits(["update:date"]);
 interface Props {
   date: Date;
 }
 
 const props = defineProps<Props>();
 
+
+// даты в которых есть составы 
 const highlightedDates = ref([
   addDays(new Date("2023.10.05"), 0),
   addDays(new Date("2023.10.10"), 0),
@@ -53,6 +47,7 @@ function selected(e) {
 .dp__theme_light {
   --dp-background-color: transparent !important;
   --dp-text-color: hsla(0, 0%, 100%, 0.5);
+
   &:hover {
     --dp-text-color: hsla(0, 0%, 100%, 1);
     --dp-background-color: hsla(0, 0%, 100%, 0.2) !important;

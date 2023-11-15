@@ -1,30 +1,106 @@
 <template>
+  <!-- TODO  поправить названия блоков -->
   <div>
     <div class="header">
-      <p class="nameStantion">Название станции</p>
+      <p class="nameStantion">{{ stationName }}</p>
       <v-btn
         class="mx-2"
-        icon="mdi-reload"
+        icon="mdi:mdi-reload"
         size="x-small"
         variant="tonal"
         :class="[needUpdate ? 'text-red' : 'text-blue-grey-lighten-4']"
         @click="this.$router.go()"
-      ></v-btn>
+      />
     </div>
   </div>
   <div class="wrapper_form">
-    <DatePick v-model:date="date"></DatePick>
-    <vSearch v-model="searchText" @searchTrain="searchTrain(searchText)"></vSearch>
+    <date-pick v-model:date="date" />
+    <v-search v-model="searchText" @searchTrain="searchTrain(searchText)" />
   </div>
-  <vTrains :trains="trainsList" v-model="selectedTrain"></vTrains>{{ selectedTrain }}
+  <v-trains
+    :trains="trainsList"
+    v-model="selectedTrain"
+    @update:model-value="showPopup = true"
+    @downloadTrain="downloadInfoTrain"
+    @webTrain="showWebVersionTrain"
+  />
+  <div class="popup" v-show="showPopup">
+    <div class="inner bg-grey-darken-3">
+      <div class="title">
+        <v-tabs
+          v-model="tab"
+          class="tabs"
+          density="compact"
+          selected-class="active"
+          slider-color="white"
+        >
+          <v-tab value="video" variant="plain" density="comfortable" min-width="auto">
+            <v-icon icon="mdi:mdi-video" color="white" />
+          </v-tab>
+          <v-tab value="photo" variant="plain" density="comfortable" min-width="auto">
+            <v-icon icon="mdi:mdi-image" color="white" />
+          </v-tab>
+          <v-tab value="3d" variant="plain" density="comfortable" min-width="auto">
+            <v-icon icon="mdi:mdi-cube" color="white" />
+          </v-tab>
+          <v-tab value="weight" variant="plain" density="comfortable" min-width="auto">
+            <v-icon icon="mdi:mdi-weight" color="white" />
+          </v-tab>
+          <v-tab value="info" variant="plain" density="comfortable" min-width="auto">
+            <v-icon icon="fa:fa-solid fa-info" color="white" />
+          </v-tab>
+          <v-tab value="alerts" variant="plain" density="comfortable" min-width="auto">
+            <v-icon icon="fa:fas fa-triangle-exclamation" color="white" />
+          </v-tab>
+        </v-tabs>
+        <div class="info">
+          <p v-tooltip.top="'Номер состава'">№ {{ selectedTrain.number }}</p>
+          <p v-tooltip.top="'Количество вагонов'">{{ selectedTrain.count }} ваг.</p>
+          <p v-tooltip.top="'Время прибытия состава'">{{ selectedTrain.time }}</p>
+          <p v-tooltip.top="'Дата прибытия состава'">{{ selectedTrain.date }}</p>
+          <p v-tooltip.top="'Индекс состава'">{{ selectedTrain.index }}</p>
+          <v-btn
+            icon="mdi:mdi-tray-arrow-down"
+            size="x-small"
+            variant="plain"
+            color="white"
+            v-tooltip.top="'Скачать архив'"
+            @click.stop="downloadInfoTrain(selectedTrain)"
+          >
+          </v-btn
+          ><v-btn
+            size="x-small"
+            variant="plain"
+            icon="mdi:mdi-monitor"
+            color="white "
+            v-tooltip.top="'Посмотреть веб версию'"
+            @click.stop="showWebVersionTrain(selectedTrain)"
+          >
+          </v-btn>
+          <v-btn
+            icon="mdi:mdi-close"
+            size="x-small"
+            variant="plain"
+            color="white"
+            v-tooltip.top="'Закрыть'"
+            @click.stop="showPopup = false"
+          />
+        </div>
+      </div>
+
+      {{ tab }}
+    </div>
+  </div>
 </template>
 <script setup>
 import { ref } from "vue";
 import DatePick from "~/components/date-pick.vue";
-import vSearch from "~/components/v-search.vue";
-import vTrains from "~/components/v-trains.vue";
+import VSearch from "~/components/v-search.vue";
+import VTrains from "~/components/v-trains.vue";
 import { useToast } from "vue-toastification";
-
+const tab = ref("info");
+const stationName = "Сонина станция";
+const showPopup = ref(false);
 const date = ref(new Date()); //дата из календаря
 let searchText = ref(" "); //переменная, для текста из поисковой строки
 let needUpdate = ref(false); //нужно ли обовить страницу
@@ -32,13 +108,13 @@ let selectedTrain = ref({}); //выбранный состав
 let trainsList = ref([
   {
     id: 1666709900667,
-    count: 19,
+    count: 15,
     time: "14:58:20",
     date: "25.10.2022",
     prefix: "2022-10-25_14-58-20",
     ASKMneed: 1,
     number: "****",
-    index: "**********",
+    index: "00000000",
     weight: 90,
     speed: 168,
     direction: "Неизвестно",
@@ -56,7 +132,7 @@ let trainsList = ref([
     ASKMsent: 0,
     ASKMneed: 1,
     number: "****",
-    index: "**********",
+    index: "00000001",
     weight: 0,
     speed: 168,
     direction: "Неизвестно",
@@ -66,6 +142,7 @@ let trainsList = ref([
     hasAlarm: false,
   },
 ]);
+
 function searchTrain(text) {
   useToast().clear();
   if (Number(text)) {
@@ -89,18 +166,72 @@ function searchTrain(text) {
     });
   }
 }
+//TODO downloadInfo  функция загрузки информации о составе
+function downloadInfoTrain(train) {
+  console.log("downloadInfoTrain", train);
+}
+
+//TODO showWebVersion  функция показа отчета по составу в вкладке браузера
+function showWebVersionTrain(train) {
+  console.log("showWebVersionTrain", train);
+}
 </script>
 
 <style lang="scss" scoped>
+.tabs {
+  & .active {
+    --v-border-color: white;
+  }
+}
+
+.popup {
+  position: fixed;
+  top: 95px;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+
+  & .inner {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+
+    & .title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      & .info {
+        display: flex;
+        align-items: center;
+
+        & p {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}
+
 .nameStantion {
   color: white;
   font-weight: 100;
 }
+
 .header {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
+
 .wrapper_form {
   display: flex;
   padding-top: 10px;
