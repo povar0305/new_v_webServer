@@ -25,34 +25,27 @@
     @webTrain="showWebVersionTrain"
   />
   <div class="popup" v-show="showPopup">
-    <div class="inner bg-grey-darken-3">
+    <div class="inner ">
       <div class="title">
-        <v-tabs
-          v-model="tab"
-          class="tabs"
-          density="compact"
-          selected-class="active"
-          slider-color="white"
-        >
+
           <v-tab value="video" variant="plain" density="comfortable" min-width="auto">
-            <v-icon icon="mdi:mdi-video" color="white" />
+            <v-icon icon="mdi:mdi-video"  />
           </v-tab>
           <v-tab value="photo" variant="plain" density="comfortable" min-width="auto">
-            <v-icon icon="mdi:mdi-image" color="white" />
+            <v-icon icon="mdi:mdi-image"  />
           </v-tab>
           <v-tab value="3d" variant="plain" density="comfortable" min-width="auto">
-            <v-icon icon="mdi:mdi-cube" color="white" />
+            <v-icon icon="mdi:mdi-cube"  />
           </v-tab>
           <v-tab value="weight" variant="plain" density="comfortable" min-width="auto">
-            <v-icon icon="mdi:mdi-weight" color="white" />
+            <v-icon icon="mdi:mdi-weight"  />
           </v-tab>
           <v-tab value="info" variant="plain" density="comfortable" min-width="auto">
-            <v-icon icon="fa:fa-solid fa-info" color="white" />
+            <v-icon icon="fa:fa-solid fa-info"  />
           </v-tab>
           <v-tab value="alerts" variant="plain" density="comfortable" min-width="auto">
-            <v-icon icon="fa:fas fa-triangle-exclamation" color="white" />
+            <v-icon icon="fa:fas fa-triangle-exclamation"  />
           </v-tab>
-        </v-tabs>
         <div class="info">
           <p v-tooltip.top="'Номер состава'">№ {{ selectedTrain.number }}</p>
           <p v-tooltip.top="'Количество вагонов'">{{ selectedTrain.count }} ваг.</p>
@@ -63,7 +56,6 @@
             icon="mdi:mdi-tray-arrow-down"
             size="x-small"
             variant="plain"
-            color="white"
             v-tooltip.top="'Скачать архив'"
             @click.stop="downloadInfoTrain(selectedTrain)"
           >
@@ -81,7 +73,7 @@
             icon="mdi:mdi-close"
             size="x-small"
             variant="plain"
-            color="white"
+            
             v-tooltip.top="'Закрыть'"
             @click.stop="showPopup = false"
           />
@@ -155,7 +147,6 @@ function searchTrain(text) {
       timeout: false,
     });
     this.searchText = "";
-
     return;
   }
   if (text.length <= 2) {
@@ -197,6 +188,7 @@ function showWebVersionTrain(train) {
   padding: 0.5rem;
 
   & .inner {
+    background: $color-grey-5;
     padding: 1rem;
     display: flex;
     flex-direction: column;

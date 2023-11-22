@@ -1,7 +1,7 @@
 <template>
   <div class="datepicked">
     <VueDatePicker :model-value="props.date" locale="ru" auto-apply hide-offset-dates :enable-time-picker="false"
-      text-input :highlight="highlightedDates" @update:model-value="selected" :format="format"></VueDatePicker>
+      text-input :highlight="highlightedDates" @update:model-value="selected" :format="format"/>
   </div>
 </template>
 
@@ -11,13 +11,14 @@ import "@vuepic/vue-datepicker/dist/main.css";
 import addDays from "date-fns/addDays";
 import { ref } from "vue";
 
+
 const emit = defineEmits(["update:date"]);
 interface Props {
   date: Date;
 }
 
 const props = defineProps<Props>();
-
+const route = useRoute();
 
 // даты в которых есть составы 
 const highlightedDates = ref([

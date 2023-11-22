@@ -39,18 +39,15 @@ ul {
 
   & li {
     margin-right: 15px;
-
     & a {
-      color: rgba(255, 255, 255, 0.5);
+      color: $color-grey-1;
       text-decoration: none;
-
       &:hover {
-        color: white;
+        color: $color-white;
       }
-
       &.router-link-active {
-        border-bottom: 1px solid white;
-        color: white;
+        border-bottom: 1px solid $color-white;
+        color: $color-white;
       }
     }
   }

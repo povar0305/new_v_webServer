@@ -24,6 +24,7 @@
     "@programic/vue3-tooltip": "^1.0.0",
     "@vuepic/vue-datepicker": "^7.0.0",
     "floating-vue": "^2.0.0-beta.24",
+    "sass-loader": "^13.3.2",
     "vue-js-popover": "^1.2.1",
     "vue-toastification": "^2.0.0-rc.5"
   }

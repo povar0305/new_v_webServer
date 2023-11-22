@@ -1,5 +1,5 @@
 <template>
-  <a class="train" :class="{ active: props.selected.index == props.train.index }">
+  <a class="train" :class="{ active: props.selected.index == props.train.index}">
     <div
       class="status_error"
       v-tooltip.top="tootlipsText"
@@ -7,22 +7,22 @@
     ></div>
     <div class="train__inner">
       <p>
-        <span v-tooltip.top="'Время прибытия состава '" class="text-grey-darken-1"
+        <span v-tooltip.top="'Время прибытия состава '"
           >{{ props.train.time }}
         </span>
       </p>
       <p>
-        <span v-tooltip.top="'Количество вагонов'" class="text-grey-darken-1"
+        <span v-tooltip.top="'Количество вагонов'"
           >{{ props.train.count }}
         </span>
       </p>
       <p>
-        <span v-tooltip.top="'Номер состава'" class="text-grey-darken-1"
+        <span v-tooltip.top="'Номер состава'"
           >{{ props.train.number }}
         </span>
       </p>
       <p>
-        <span v-tooltip.top="'Индекс состава'" class="text-grey-darken-1"
+        <span v-tooltip.top="'Индекс состава'"
           >{{ props.train.index }}
         </span>
       </p>
@@ -30,17 +30,17 @@
         <span v-tooltip.top="ASKMtitle" :class="ASKMclass">АСКМ </span>
       </p>
       <p v-if="props.soursesTrains.weight">
-        <span v-tooltip.top="'Общий вес(т)'" class="text-grey-darken-1"
+        <span v-tooltip.top="'Общий вес(т)'"
           >{{ props.train.weight }}
         </span>
       </p>
       <p>
-        <span v-tooltip.top="'Скорость состава(км/ч)'" class="text-grey-darken-1"
+        <span v-tooltip.top="'Скорость состава(км/ч)'"
           >{{ props.train.speed }}
         </span>
       </p>
       <p>
-        <span v-tooltip.top="'Направление состава'" class="text-grey-darken-1"
+        <span v-tooltip.top="'Направление состава'"
           >{{ props.train.direction }}
         </span>
       </p>
@@ -145,13 +145,13 @@ if (props.train.hasAlarm) {
   height: 40px;
   justify-content: space-between;
   border-radius: 8px;
-
+color:$color-grey-1;
   &.active {
-    background: rgba(255, 255, 255, 0.15);
+    background: $color-grey-3;
   }
 
   &:hover {
-    box-shadow: 0px 0px 20px -5px rgba(255, 255, 255, 0.31);
+    box-shadow: 0px 0px 20px -5px $color-grey-1;
     cursor: pointer;
   }
 }

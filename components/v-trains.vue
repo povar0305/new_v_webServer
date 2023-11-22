@@ -2,40 +2,40 @@
   <div class="trains">
     <div class="trains_title">
       <p>
-        <span v-tooltip.top="'Время прибытия состава '" class="text-blue-grey-lighten-4">
+        <span v-tooltip.top="'Время прибытия состава '" >
           Время
         </span>
       </p>
       <p>
-        <span v-tooltip.top="'Количество вагонов'" class="text-blue-grey-lighten-4">
+        <span v-tooltip.top="'Количество вагонов'" >
           Вагоны
         </span>
       </p>
       <p>
-        <span v-tooltip.top="'Номер состава'" class="text-blue-grey-lighten-4">
+        <span v-tooltip.top="'Номер состава'" >
           Номер
         </span>
       </p>
       <p>
-        <span v-tooltip.top="'Индекс состава'" class="text-blue-grey-lighten-4">
+        <span v-tooltip.top="'Индекс состава'" >
           Индекс
         </span>
       </p>
       <p>
-        <span v-tooltip.top="'Есть ли данные АСКМ'" class="text-blue-grey-lighten-4">
+        <span v-tooltip.top="'Есть ли данные АСКМ'" >
           АСКМ
         </span>
       </p>
       <p v-if="soursesTrains.weight">
-        <span v-tooltip.top="'Общий вес(т)'" class="text-blue-grey-lighten-4"> Вес </span>
+        <span v-tooltip.top="'Общий вес(т)'" > Вес </span>
       </p>
       <p>
-        <span v-tooltip.top="'Скорость состава(км/ч)'" class="text-blue-grey-lighten-4">
+        <span v-tooltip.top="'Скорость состава(км/ч)'" >
           Скорость
         </span>
       </p>
       <p>
-        <span v-tooltip.top="'Направление состава'" class="text-blue-grey-lighten-4">
+        <span v-tooltip.top="'Направление состава'" >
           Направление
         </span>
       </p>
@@ -100,6 +100,7 @@ checkSourses();
   display: flex;
   padding-top: 20px;
   flex-direction: column;
+  color:$color-white;
 
   &_list {
     display: flex;
